@@ -1,9 +1,9 @@
-public class System {
+public class InstaPaySystem {
     private User[] usersList;
 
-    // Constructor
-    public System(int maxUsers) {
-        this.usersList = new User[maxUsers];
+    private List<User> usersList;
+    public InstaPaySystem() {
+        this.usersList = new ArrayList<>();
     }
 
     // Method to sign up a new user
@@ -13,10 +13,17 @@ public class System {
         // or the username/mobileNumber is already taken
     }
 
-    // Method to sign in a user
-    public void signIn(String username, String password) {
-        // Logic to authenticate the user based on the provided username and password
-        // You may want to add error handling for cases where the credentials are incorrect
+    public boolean signIn(String username, String password) {
+        // Logic to check if the user with the provided credentials exists in the usersList
+        boolean userExists = usersList.stream()
+                .anyMatch(user -> user.getUsername().equals(username) && user.getPassword().equals(password));
+        if (userExists) {
+            System.out.println("Sign-in successful!");
+            return true;
+        } else {
+            System.out.println("Invalid username or password. Sign-in failed.");
+            return false;
+        }
     }
 
     // Method to verify user information
