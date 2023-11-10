@@ -1,9 +1,10 @@
-public class System {
-    private User[] usersList;
+import java.util.ArrayList;
+import java.util.List;
+public class InstaPaySystem {
 
-    // Constructor
-    public System(int maxUsers) {
-        this.usersList = new User[maxUsers];
+    private List<User> usersList;
+    public InstaPaySystem() {
+        this.usersList = new ArrayList<>();
     }
 
     // Method to sign up a new user
