@@ -18,7 +18,7 @@ public class BankAPI{
     }
 
     public boolean search(String mobileNumber) {
-        API currentAPI = bankApis.get(bankName);
+        API currentAPI = bankApis.get(mobileNumber);
         return currentAPI.search(mobileNumber);
     }
 }

@@ -1,20 +1,24 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class WalletAPI implements API{
+public class WalletAPI{
 
-    @Override
-    public double getBalance(String accountID) {
-        return 0;
+    private Map<String, API> walletApis;
+
+    public double getBalance(String accountID, String proivder) {
+        API currentAPI = walletApis.get(proivder);
+        return currentAPI.getBalance(accountID);
     }
 
-    @Override
-    public void updateBalance(double amount) {
 
+
+    public void updateBalance(double amount, String proivder) {
+        API currentAPI = walletApis.get(proivder);
+        currentAPI.updateBalance(amount);
     }
 
-    @Override
     public boolean search(String mobileNumber) {
-        return false;
+        API currentAPI = walletApis.get(mobileNumber);
+        return currentAPI.search(mobileNumber);
     }
 }
