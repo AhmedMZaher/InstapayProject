@@ -1,20 +1,24 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class BankAPI implements API{
+public class BankAPI{
 
-    @Override
-    public double getBalance() {
-        return 0;
+    private Map<String, API> bankApis;
+
+    public double getBalance(String accountID, String bankName) {
+        API currentAPI = bankApis.get(bankName);
+        return currentAPI.getBalance(accountID);
     }
 
-    @Override
-    public void updateBalance(double amount) {
 
+
+    public void updateBalance(double amount, String bankName) {
+        API currentAPI = bankApis.get(bankName);
+        currentAPI.updateBalance(amount);
     }
 
-    @Override
     public boolean search(String mobileNumber) {
-        return false;
+        API currentAPI = bankApis.get(bankName);
+        return currentAPI.search(mobileNumber);
     }
 }

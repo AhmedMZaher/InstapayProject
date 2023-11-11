@@ -4,7 +4,7 @@ import java.util.Map;
 public class WalletAPI implements API{
 
     @Override
-    public double getBalance() {
+    public double getBalance(String accountID) {
         return 0;
     }
 
@@ -13,8 +13,8 @@ public class WalletAPI implements API{
 
     }
 
-    @Overrideng mobileNumber) {
+    @Override
+    public boolean search(String mobileNumber) {
         return false;
-    public boolean search(Stri
     }
 }

@@ -1,5 +1,5 @@
 interface API {
-    public double getBalance();
+    public double getBalance(String accountID);
     public void updateBalance(double amount);
     public boolean search(String mobileNumber);
 }
