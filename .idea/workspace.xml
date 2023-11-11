@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f72cba73-3a45-4962-a3b8-e91104736ac4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BankAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WalletAccount.java" afterDir="false" />
+    <list default="true" id="f72cba73-3a45-4962-a3b8-e91104736ac4" name="Changes" comment="Initial Creation">
+      <change afterPath="$PROJECT_DIR$/src/API.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IBill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WalletAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WalletAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -53,11 +56,24 @@
       <option name="presentableId" value="Default" />
       <updated>1699565356279</updated>
       <workItem from="1699565357434" duration="903000" />
-      <workItem from="1699613540394" duration="301000" />
+      <workItem from="1699613540394" duration="1273000" />
+      <workItem from="1699715320858" duration="917000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Creation">
+      <created>1699614136464</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699614136464</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Creation" />
   </component>
 </project>
