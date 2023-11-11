@@ -1,17 +1,27 @@
 public class Account {
-    // Fields
     private String accountID;
     private String mobileNumber;
     private double balance;
 
-    // Constructors (You can add more as needed)
     public Account(String accountID, String mobileNumber, double balance) {
         this.accountID = accountID;
         this.mobileNumber = mobileNumber;
         this.balance = balance;
     }
 
-    // Getters and Setters (You can generate these using your IDE)
+    public boolean transferToWalletAccount(WalletAccount walletAccount, double amount) {
+        // TODO
+        return false;
+    }
+    public boolean transferToInstaPayAccount(Account instaPayAccount, double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            instaPayAccount.setBalance(instaPayAccount.getBalance() + amount);
+            return true;
+        } else {
+            return false;
+        }
+    }
     public String getAccountID() {
         return accountID;
     }
@@ -35,6 +45,4 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
-    // Other methods can be added as needed
 }

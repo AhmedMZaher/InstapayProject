@@ -1,5 +1,5 @@
+import java.util.HashMap;
 interface API {
-    public double getBalance();
-    public void updateBalance(double amount);
-    public boolean search(String mobileNumber);
+    boolean authenticateUser(HashMap<String, String> userDetails);
+    boolean transferMoney(HashMap<String, String> fromAccount, HashMap<String, String> toAccount, double amount);
 }
