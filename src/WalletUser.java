@@ -1,21 +1,28 @@
-public class WalletUser {
-  private String walletId;
-  private double walletBalance;
+public class WalletUser implements UserDetailsAPI {
+  private String mobileNumber;
 
-  public WalletUser(String walletId, double walletBalance) {
-    this.walletId = walletId;
-    this.walletBalance = walletBalance;
+  public WalletUser(String mobileNumber, double walletBalance) {
+    this.mobileNumber = mobileNumber;
+  }
+  public WalletUser(String mobileNumber) {
+    this.mobileNumber = mobileNumber;
   }
 
-  public String getWalletId() {
-    return walletId;
+  public String getMobileNumber() {
+    return mobileNumber;
   }
 
-  public double getWalletBalance() {
-    return walletBalance;
-  }
+  @Override
+  public boolean equals(UserDetailsAPI other) {
+    if (other == null) {
+      return false;
+    }
+    if (other.getClass() != this.getClass()) {
+      return false;
+    }
 
-  public void setWalletBalance(double walletBalance) {
-    this.walletBalance = walletBalance;
+    WalletUser otherUser = (WalletUser) other;
+
+    return this.mobileNumber.equals(otherUser.mobileNumber);
   }
 }

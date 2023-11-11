@@ -1,27 +1,38 @@
-class BankUser {
+class BankUser implements UserDetailsAPI {
   private String creditCardNumber;
   private String cvv;
-  private double accountBalance;
+  private String phoneNumber;
 
-  public BankUser(String creditCardNumber, String cvv, double accountBalance) {
-      this.creditCardNumber = creditCardNumber;
-      this.cvv = cvv;
-      this.accountBalance = accountBalance;
+  public BankUser(String creditCardNumber, String cvv, String phoneNumber) {
+    this.creditCardNumber = creditCardNumber;
+    this.cvv = cvv;
+    this.phoneNumber = phoneNumber;
   }
 
   public String getCreditCardNumber() {
-      return creditCardNumber;
+    return creditCardNumber;
   }
 
   public String getCvv() {
-      return cvv;
+    return cvv;
   }
 
-  public double getAccountBalance() {
-    return accountBalance;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
-  
-  public void setAccountBalance(double accountBalance) {
-      this.accountBalance = accountBalance;
+
+  @Override
+  public boolean equals(UserDetailsAPI other) {
+    if (other == null) {
+      return false;
+    }
+
+    if (other.getClass() != this.getClass()) {
+      return false;
+    }
+
+    BankUser otherUser = (BankUser) other;
+
+    return this.creditCardNumber.equals(otherUser.creditCardNumber) && this.cvv.equals(otherUser.cvv);
   }
 }

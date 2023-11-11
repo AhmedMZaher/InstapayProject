@@ -1,20 +1,27 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class WalletAPI implements API {
-    private List<WalletUser> walletUsers;
-    public WalletAPI(){
-        walletUsers = new ArrayList<>();
-        walletUsers.add(new WalletUser("1234567890123456", 1000.0));
-        walletUsers.add(new WalletUser("1234567890123457", 1000.0));
-        walletUsers.add(new WalletUser("1234567890123458", 1000.0));
+    private HashMap<WalletUser, Double> walletUsers;
+    private static WalletAPI instance;
+
+    private WalletAPI() {
+        walletUsers = new HashMap<>();
+        walletUsers.put(new WalletUser("1234567890"), 1000.0);
+        walletUsers.put(new WalletUser("1234567891"), 1000.0);
+        walletUsers.put(new WalletUser("1234567892"), 1000.0);
+    }
+    
+    public static WalletAPI getInstance() {
+        if (instance == null) {
+            instance = new WalletAPI();
+        }
+        return instance;
     }
 
     @Override
-    public boolean authenticateUser(HashMap<String, String> userDetails) {
-        for (WalletUser walletUser : walletUsers) {
-            if (walletUser.getWalletId().equals(userDetails.get("walletId"))) {
+    public boolean authenticateUser(UserDetailsAPI userDetails) {
+        for (WalletUser walletUser : walletUsers.keySet()) {
+            if (walletUser.equals(userDetails)) {
                 return true;
             }
         }
@@ -22,15 +29,26 @@ public class WalletAPI implements API {
     }
 
     @Override
-    public boolean transferMoney(HashMap<String, String> fromAccount, HashMap<String, String> toAccount, double amount) {
-        for (WalletUser walletUser : walletUsers) {
-            if (walletUser.getWalletId().equals(fromAccount.get("walletId"))
-                    && walletUser.getWalletBalance() >= amount) {
-                walletUser.setWalletBalance(walletUser.getWalletBalance() - amount);
+    public boolean updateBalance(UserDetailsAPI senderDetails, double amount) {
+        if(!authenticateUser(senderDetails)) {
+            return false;
+        }
+        for (HashMap.Entry<WalletUser, Double> entry : walletUsers.entrySet()) {
+            if (entry.getKey().equals(senderDetails)) {
+                entry.setValue(amount);
                 return true;
             }
         }
-        return false;
+        return true;
     }
 
+    @Override
+    public double getAccountBalance(UserDetailsAPI userDetails) {
+        for(HashMap.Entry<WalletUser, Double> entry : walletUsers.entrySet()) {
+            if(entry.getKey().equals(userDetails)) {
+                return entry.getValue();
+            }
+        }
+        return 0.0;
+    }
 }

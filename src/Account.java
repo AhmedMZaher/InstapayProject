@@ -1,33 +1,14 @@
-public class Account {
-    private String accountID;
-    private String mobileNumber;
-    private double balance;
+public abstract class Account {
+    protected String accountID;
+    protected String mobileNumber;
 
-    public Account(String accountID, String mobileNumber, double balance) {
-        this.accountID = accountID;
+    public Account(String mobileNumber) {
+        this.accountID = Math.random() + "";
         this.mobileNumber = mobileNumber;
-        this.balance = balance;
     }
-
-    public boolean transferToWalletAccount(WalletAccount walletAccount, double amount) {
-        // TODO
-        return false;
-    }
-    public boolean transferToInstaPayAccount(Account instaPayAccount, double amount) {
-        if (balance >= amount) {
-            balance -= amount;
-            instaPayAccount.setBalance(instaPayAccount.getBalance() + amount);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
     public String getAccountID() {
         return accountID;
-    }
-
-    public void setAccountID(String accountID) {
-        this.accountID = accountID;
     }
 
     public String getMobileNumber() {
@@ -38,11 +19,7 @@ public class Account {
         this.mobileNumber = mobileNumber;
     }
 
-    public double getBalance() {
-        return balance;
-    }
+    public abstract double getAccountBalance();
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+    public abstract String getUserDetails();
 }
