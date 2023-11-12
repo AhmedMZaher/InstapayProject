@@ -24,4 +24,6 @@ public abstract class Account {
     public abstract double getAccountBalance();
 
     public abstract String getUserDetails();
+
+    public abstract void UpdateAccountBalance(double amount);
 }
