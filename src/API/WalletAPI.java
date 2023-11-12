@@ -52,3 +52,4 @@ public class WalletAPI implements API {
         return 0.0;
     }
 }
+

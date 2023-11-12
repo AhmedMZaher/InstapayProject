@@ -1,9 +1,6 @@
 public class WalletUser implements UserDetailsAPI {
   private String mobileNumber;
 
-  public WalletUser(String mobileNumber, double walletBalance) {
-    this.mobileNumber = mobileNumber;
-  }
   public WalletUser(String mobileNumber) {
     this.mobileNumber = mobileNumber;
   }
