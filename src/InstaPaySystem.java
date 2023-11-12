@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 public class InstaPaySystem {
 
     private List<User> usersList;
