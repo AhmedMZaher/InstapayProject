@@ -1,26 +1,35 @@
 public class BankAccount extends Account {
-    // Additional field
     private String bankName;
-
-    // Constructors (You can add more as needed)
-    public BankAccount(String accountID, String mobileNumber, double balance, String bankName) {
-        super(accountID, mobileNumber, balance);
+    private String cvv;
+    private String creditCardNumber;
+    public BankAccount(String mobileNumber, String bankName, String cvv, String creditCardNumber) {
+        super(mobileNumber);
         this.bankName = bankName;
+        this.cvv = cvv;
+        this.creditCardNumber = creditCardNumber;
     }
-
-    // Getter and Setter for bankName
     public String getBankName() {
         return bankName;
     }
-
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
-
-    // Method for transferring to another bank account
-    public void transferToBankAccount() {
-        // Implementation for transferring to another bank account
-        // You can add your logic here
-        System.out.println("Transfer to another bank account initiated.");
+    public String getCvv() {
+        return cvv;
+    }
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+    @Override
+    public String getUserDetails() {
+        return this.getMobileNumber() + " " + this.getBankName() + " " + this.getCreditCardNumber() + " " + this.getCvv();
+    }
+    @Override
+    public double getAccountBalance() {
+        UserDetailsAPI userDetails = new BankUser(this.getCreditCardNumber(), this.getCvv(), this.getMobileNumber());
+        return BankAPI.getInstance().getAccountBalance(userDetails);
     }
 }
