@@ -1,14 +1,16 @@
+package API;
+
 import java.util.HashMap;
 
 public class WalletAPI implements API {
-    private HashMap<WalletUser, Double> walletUsers;
+    private HashMap<WalletDetails, Double> walletUsers;
     private static WalletAPI instance;
 
     private WalletAPI() {
         walletUsers = new HashMap<>();
-        walletUsers.put(new WalletUser("1234567890"), 1000.0);
-        walletUsers.put(new WalletUser("1234567891"), 1000.0);
-        walletUsers.put(new WalletUser("1234567892"), 1000.0);
+        walletUsers.put(new WalletDetails("1234567890"), 1000.0);
+        walletUsers.put(new WalletDetails("1234567891"), 1000.0);
+        walletUsers.put(new WalletDetails("1234567892"), 1000.0);
     }
     
     public static WalletAPI getInstance() {
@@ -19,9 +21,9 @@ public class WalletAPI implements API {
     }
 
     @Override
-    public boolean authenticateUser(UserDetailsAPI userDetails) {
-        for (WalletUser walletUser : walletUsers.keySet()) {
-            if (walletUser.equals(userDetails)) {
+    public boolean authenticateUser(DetailsAPI userDetails) {
+        for (WalletDetails walletDetailsUser : walletUsers.keySet()) {
+            if (walletDetailsUser.equals(userDetails)) {
                 return true;
             }
         }
@@ -29,11 +31,11 @@ public class WalletAPI implements API {
     }
 
     @Override
-    public boolean updateBalance(UserDetailsAPI senderDetails, double amount) {
+    public boolean updateBalance(DetailsAPI senderDetails, double amount) {
         if(!authenticateUser(senderDetails)) {
             return false;
         }
-        for (HashMap.Entry<WalletUser, Double> entry : walletUsers.entrySet()) {
+        for (HashMap.Entry<WalletDetails, Double> entry : walletUsers.entrySet()) {
             if (entry.getKey().equals(senderDetails)) {
                 entry.setValue(amount);
                 return true;
@@ -43,8 +45,8 @@ public class WalletAPI implements API {
     }
 
     @Override
-    public double getAccountBalance(UserDetailsAPI userDetails) {
-        for(HashMap.Entry<WalletUser, Double> entry : walletUsers.entrySet()) {
+    public double getAccountBalance(DetailsAPI userDetails) {
+        for(HashMap.Entry<WalletDetails, Double> entry : walletUsers.entrySet()) {
             if(entry.getKey().equals(userDetails)) {
                 return entry.getValue();
             }

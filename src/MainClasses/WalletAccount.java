@@ -1,3 +1,9 @@
+package MainClasses;
+
+import API.DetailsAPI;
+import API.WalletAPI;
+import API.WalletDetails;
+
 public class WalletAccount extends Account {
     private String provider;
     public WalletAccount(String mobileNumber, String provider) {
@@ -17,7 +23,7 @@ public class WalletAccount extends Account {
     }
     @Override
     public double getAccountBalance() {
-        UserDetailsAPI userDetails = new WalletUser(this.getMobileNumber());
+        DetailsAPI userDetails = new WalletDetails(this.getMobileNumber());
         return WalletAPI.getInstance().getAccountBalance(userDetails);
     }
 

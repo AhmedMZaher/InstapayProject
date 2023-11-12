@@ -1,3 +1,10 @@
+package MainClasses;
+
+import API.API;
+import API.BankDetails;
+import API.DetailsAPI;
+import API.WalletDetails;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,21 +27,21 @@ public class InstaPaySystem {
         System.out.println("Choose account type (1 for Bank, 2 for Wallet):");
         int accountTypeChoice = scanner.nextInt();
         scanner.nextLine();
-        UserDetailsAPI userDetails;
+        DetailsAPI userDetails;
         if (accountTypeChoice == 1) {
             System.out.println("Enter your credit card number:");
             String creditCardNumber = scanner.nextLine();
             System.out.println("Enter your CVV:");
             String cvv = scanner.nextLine();
-            userDetails = new BankUser(creditCardNumber, cvv, phoneNumber);
+            userDetails = new BankDetails(creditCardNumber, cvv, phoneNumber);
         } else if (accountTypeChoice == 2) {
-            userDetails = new WalletUser(phoneNumber);
+            userDetails = new WalletDetails(phoneNumber);
         } else {
             System.out.println("Invalid choice. Sign-up aborted.");
             return;
         }
 
-        // Authenticate user through API
+        // Authenticate user through API.API
         if (api.authenticateUser(userDetails)) {
             // Send OTP to the phone number
             String generatedOTP = generateOTP();
@@ -59,8 +66,8 @@ public class InstaPaySystem {
 
                 // Create and add a new user to the usersList
                 Account account;
-                if(userDetails instanceof BankUser) {
-                    account = new BankAccount(phoneNumber, "Bank", ((BankUser) userDetails).getCvv(), ((BankUser) userDetails).getCreditCardNumber());
+                if(userDetails instanceof BankDetails) {
+                    account = new BankAccount(phoneNumber, "Bank", ((BankDetails) userDetails).getCvv(), ((BankDetails) userDetails).getCreditCardNumber());
                 } else {
                     account = new WalletAccount(phoneNumber, "Wallet");
                 }
@@ -71,7 +78,7 @@ public class InstaPaySystem {
                 System.out.println("OTP verification failed. Sign-up aborted.");
             }
         } else {
-            System.out.println("User authentication failed. Sign-up aborted.");
+            System.out.println("MainClasses.User authentication failed. Sign-up aborted.");
         }
     }
 

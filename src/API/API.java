@@ -1,7 +1,9 @@
-interface API {
-    boolean authenticateUser(UserDetailsAPI userDetails);
+package API;
 
-    boolean updateBalance(UserDetailsAPI senderDetails, double amount);
+public interface API {
+    boolean authenticateUser(DetailsAPI userDetails);
+
+    boolean updateBalance(DetailsAPI senderDetails, double amount);
     
-    double getAccountBalance(UserDetailsAPI userDetails);
+    double getAccountBalance(DetailsAPI userDetails);
 }

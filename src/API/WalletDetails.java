@@ -1,7 +1,9 @@
-public class WalletUser implements UserDetailsAPI {
+package API;
+
+public class WalletDetails implements DetailsAPI {
   private String mobileNumber;
 
-  public WalletUser(String mobileNumber) {
+  public WalletDetails(String mobileNumber) {
     this.mobileNumber = mobileNumber;
   }
 
@@ -10,7 +12,7 @@ public class WalletUser implements UserDetailsAPI {
   }
 
   @Override
-  public boolean equals(UserDetailsAPI other) {
+  public boolean equals(DetailsAPI other) {
     if (other == null) {
       return false;
     }
@@ -18,7 +20,7 @@ public class WalletUser implements UserDetailsAPI {
       return false;
     }
 
-    WalletUser otherUser = (WalletUser) other;
+    WalletDetails otherUser = (WalletDetails) other;
 
     return this.mobileNumber.equals(otherUser.mobileNumber);
   }

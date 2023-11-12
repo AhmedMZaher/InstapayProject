@@ -1,9 +1,11 @@
-class BankUser implements UserDetailsAPI {
+package API;
+
+public class BankDetails implements DetailsAPI {
   private String creditCardNumber;
   private String cvv;
   private String phoneNumber;
 
-  public BankUser(String creditCardNumber, String cvv, String phoneNumber) {
+  public BankDetails(String creditCardNumber, String cvv, String phoneNumber) {
     this.creditCardNumber = creditCardNumber;
     this.cvv = cvv;
     this.phoneNumber = phoneNumber;
@@ -22,7 +24,7 @@ class BankUser implements UserDetailsAPI {
   }
 
   @Override
-  public boolean equals(UserDetailsAPI other) {
+  public boolean equals(DetailsAPI other) {
     if (other == null) {
       return false;
     }
@@ -31,7 +33,7 @@ class BankUser implements UserDetailsAPI {
       return false;
     }
 
-    BankUser otherUser = (BankUser) other;
+    BankDetails otherUser = (BankDetails) other;
 
     return this.creditCardNumber.equals(otherUser.creditCardNumber) && this.cvv.equals(otherUser.cvv);
   }

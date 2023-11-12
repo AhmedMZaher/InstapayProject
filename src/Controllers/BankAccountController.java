@@ -1,3 +1,8 @@
+package Controllers;
+
+import API.BankAPI;
+import API.DetailsAPI;
+
 public class BankAccountController {
   private static BankAccountController instance;
 
@@ -11,7 +16,7 @@ public class BankAccountController {
     }
     return instance;
   }
-  public boolean transferToBankAccount(UserDetailsAPI senderUserDetails, UserDetailsAPI recieverUserDetails, double amount) {
+  public boolean transferToBankAccount(DetailsAPI senderUserDetails, DetailsAPI recieverUserDetails, double amount) {
     double senderBalance = BankAPI.getInstance().getAccountBalance(senderUserDetails);
     double recieverBalance = BankAPI.getInstance().getAccountBalance(recieverUserDetails);
     if(senderBalance >= amount) {

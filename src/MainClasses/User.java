@@ -1,3 +1,5 @@
+package MainClasses;
+
 public class User {
     // Fields
     private String fullName;

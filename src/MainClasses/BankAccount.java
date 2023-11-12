@@ -1,3 +1,9 @@
+package MainClasses;
+
+import API.BankAPI;
+import API.BankDetails;
+import API.DetailsAPI;
+
 public class BankAccount extends Account {
     private String bankName;
     private String cvv;
@@ -29,7 +35,7 @@ public class BankAccount extends Account {
     }
     @Override
     public double getAccountBalance() {
-        UserDetailsAPI userDetails = new BankUser(this.getCreditCardNumber(), this.getCvv(), this.getMobileNumber());
+        DetailsAPI userDetails = new BankDetails(this.getCreditCardNumber(), this.getCvv(), this.getMobileNumber());
         return BankAPI.getInstance().getAccountBalance(userDetails);
     }
 }
