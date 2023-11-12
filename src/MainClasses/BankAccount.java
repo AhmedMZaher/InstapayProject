@@ -38,4 +38,10 @@ public class BankAccount extends Account {
         DetailsAPI userDetails = new BankDetails(this.getCreditCardNumber(), this.getCvv(), this.getMobileNumber());
         return BankAPI.getInstance().getAccountBalance(userDetails);
     }
+
+    @Override
+    public void UpdateAccountBalance(double amount) {
+        DetailsAPI userDetails = new BankDetails(this.getCreditCardNumber(), this.getCvv(), this.getMobileNumber());
+        BankAPI.getInstance().updateBalance(userDetails, amount);
+    }
 }
