@@ -27,4 +27,11 @@ public class WalletAccount extends Account {
         return WalletAPI.getInstance().getAccountBalance(userDetails);
     }
 
+    @Override
+    public void UpdateAccountBalance(double amount) {
+        DetailsAPI userDetails = new WalletDetails(this.getMobileNumber());
+        WalletAPI.getInstance().updateBalance(userDetails, amount);
+    }
+
+
 }
