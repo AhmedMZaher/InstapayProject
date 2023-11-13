@@ -4,11 +4,13 @@ public class BankDetails implements DetailsAPI {
   private String creditCardNumber;
   private String cvv;
   private String phoneNumber;
+  private String bankName;
 
-  public BankDetails(String creditCardNumber, String cvv, String phoneNumber) {
+  public BankDetails(String creditCardNumber, String cvv, String phoneNumber, String bankName) {
     this.creditCardNumber = creditCardNumber;
     this.cvv = cvv;
     this.phoneNumber = phoneNumber;
+    this.bankName = bankName;
   }
   
   public String getCreditCardNumber() {
@@ -35,6 +37,6 @@ public class BankDetails implements DetailsAPI {
 
     BankDetails otherUser = (BankDetails) other;
 
-    return this.creditCardNumber.equals(otherUser.creditCardNumber) && this.cvv.equals(otherUser.cvv);
+    return this.creditCardNumber.equals(otherUser.creditCardNumber) && this.cvv.equals(otherUser.cvv) && this.phoneNumber.equals(otherUser.phoneNumber) && this.bankName.equals(otherUser.bankName);
   }
 }

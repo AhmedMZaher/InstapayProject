@@ -5,25 +5,10 @@ import API.WalletAPI;
 import API.WalletDetails;
 
 public class WalletAccount extends Account {
-    private String provider;
 
-    public WalletAccount(String mobileNumber, String provider) {
+    public WalletAccount(String mobileNumber, WalletDetails walletDetails) {
         super(mobileNumber);
-        this.provider = provider;
-    }
-
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
-
-    @Override
-    public String getUserDetails() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserDetails'");
+        this.userDetails = walletDetails;
     }
 
     @Override
@@ -33,7 +18,7 @@ public class WalletAccount extends Account {
     }
 
     @Override
-    public void UpdateAccountBalance(double amount) {
+    public void updateAccountBalance(double amount) {
         DetailsAPI userDetails = new WalletDetails(this.getMobileNumber());
         WalletAPI.getInstance().updateBalance(userDetails, amount);
     }

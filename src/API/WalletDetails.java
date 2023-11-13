@@ -2,6 +2,7 @@ package API;
 
 public class WalletDetails implements DetailsAPI {
   private String mobileNumber;
+  private String provider;
 
   public WalletDetails(String mobileNumber) {
     this.mobileNumber = mobileNumber;

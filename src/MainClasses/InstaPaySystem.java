@@ -49,7 +49,9 @@ public class InstaPaySystem {
             String creditCardNumber = scanner.nextLine();
             System.out.println("Enter your CVV:");
             String cvv = scanner.nextLine();
-            userDetails = new BankDetails(creditCardNumber, cvv, phoneNumber);
+            System.out.println("Enter your bank name:");
+            String bankName = scanner.nextLine();
+            userDetails = new BankDetails(creditCardNumber,cvv,phoneNumber, bankName);
         } else if (accountTypeChoice == 2) {
             api = WalletAPI.getInstance();
             userDetails = new WalletDetails(phoneNumber);
@@ -95,9 +97,9 @@ public class InstaPaySystem {
                 // Create and add a new user to the usersList
                 Account account;
                 if(userDetails instanceof BankDetails) {
-                    account = new BankAccount(phoneNumber, "Bank", ((BankDetails) userDetails).getCvv(), ((BankDetails) userDetails).getCreditCardNumber());
+                    account = new BankAccount(phoneNumber, (BankDetails) userDetails);
                 } else {
-                    account = new WalletAccount(phoneNumber, "Wallet");
+                    account = new WalletAccount(phoneNumber, (WalletDetails) userDetails);
                 }
                 User newUser = new User(fullName, username, password, account);
                 usersList.add(newUser);
