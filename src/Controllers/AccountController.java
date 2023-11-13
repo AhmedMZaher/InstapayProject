@@ -3,7 +3,7 @@ package Controllers;
 import API.*;
 import MainClasses.*;
 
-class AccountController {
+public class  AccountController {
     private static AccountController instance;
 
     private AccountController() {
