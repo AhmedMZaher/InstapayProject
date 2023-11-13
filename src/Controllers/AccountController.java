@@ -18,19 +18,32 @@ public class  AccountController {
     }
 
     public boolean transferToWalletAccount(DetailsAPI senderUserDetails, DetailsAPI recieverUserDetails, double amount) {
-
         double senderBalance = BankAPI.getInstance().getAccountBalance(senderUserDetails);
         double recieverBalance = BankAPI.getInstance().getAccountBalance(recieverUserDetails);
+
         if (senderBalance >= amount) {
             WalletAPI.getInstance().updateBalance(senderUserDetails, senderBalance - amount);
             WalletAPI.getInstance().updateBalance(recieverUserDetails, recieverBalance + amount);
+
             return true;
         }
+
         return false;
     }
 
-    public boolean transferToInstaPayAccount(Account instaPayAccount, double amount) {
-        // TODO
+    public boolean transferToInstaPayAccount(Account senderInstapayAccount, String accountID, double amount) {
+        User recieverUser = InstaPaySystem.getInstance().isUserExist(accountID);
+        
+        if (recieverUser == null || senderInstapayAccount == null) {
+            return false;
+        }
+
+        if (senderInstapayAccount.getAccountBalance() >= amount) {
+            senderInstapayAccount.UpdateAccountBalance(senderInstapayAccount.getAccountBalance() - amount);
+            recieverUser.getAccountType()
+                    .UpdateAccountBalance(recieverUser.getAccountType().getAccountBalance() + amount);
+            return true;
+        }
         return false;
     }
 
@@ -45,7 +58,7 @@ public class  AccountController {
         if (billType == 1) {
             System.out.println("Enter the bill ID");
             String billID = System.console().readLine();
-            ElectricityDetails electricityDetails = (ElectricityDetails) new ElectricityBill().getBillDetails(billID);
+            ElectricityDetails electricityDetails = (ElectricityDetails) ElectricityBill.getInstance().getBillDetails(billID);
             if (electricityDetails != null) {
                 double amount = electricityDetails.getRatePerUnit() * electricityDetails.getUnitsConsumed();
                 Account account = user.getAccountType();
@@ -69,7 +82,7 @@ public class  AccountController {
             System.out.println("Enter the bill ID");
             String billID = System.console().readLine();
 
-            GasDetails gasDetails = (GasDetails) new GasBill().getBillDetails(billID);
+            GasDetails gasDetails = (GasDetails) GasBill.getInstance().getBillDetails(billID);
             if (gasDetails != null) {
                 double amount = gasDetails.getPrice();
                 Account account = user.getAccountType();

@@ -10,7 +10,7 @@ public class BankDetails implements DetailsAPI {
     this.cvv = cvv;
     this.phoneNumber = phoneNumber;
   }
-
+  
   public String getCreditCardNumber() {
     return creditCardNumber;
   }
