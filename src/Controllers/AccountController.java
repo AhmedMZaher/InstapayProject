@@ -3,6 +3,8 @@ package Controllers;
 import API.*;
 import MainClasses.*;
 
+import java.util.Scanner;
+
 public class  AccountController {
     private static AccountController instance;
 
@@ -48,16 +50,19 @@ public class  AccountController {
     }
 
     public boolean payBill(User user) {
+        Scanner scanner = new Scanner(System.in);
         // ask the user for the type of bill
         System.out.println("Enter the type of bill you want to pay");
         System.out.println("1. Electricity");
         System.out.println("2. Gas");
 
         // get the type of bill
-        int billType = Integer.parseInt(System.console().readLine());
+        int billType = scanner.nextInt();
+        scanner.nextLine();
         if (billType == 1) {
             System.out.println("Enter the bill ID");
-            String billID = System.console().readLine();
+//            String billID = System.console().readLine();
+            String billID = scanner.nextLine();
             ElectricityDetails electricityDetails = (ElectricityDetails) ElectricityBill.getInstance().getBillDetails(billID);
             if (electricityDetails != null) {
                 double amount = electricityDetails.getRatePerUnit() * electricityDetails.getUnitsConsumed();
@@ -80,7 +85,7 @@ public class  AccountController {
             }
         } else if (billType == 2) {
             System.out.println("Enter the bill ID");
-            String billID = System.console().readLine();
+            String billID = scanner.nextLine();
 
             GasDetails gasDetails = (GasDetails) GasBill.getInstance().getBillDetails(billID);
             if (gasDetails != null) {
