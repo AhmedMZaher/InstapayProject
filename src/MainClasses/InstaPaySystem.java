@@ -78,8 +78,20 @@ public class InstaPaySystem {
                     return;
                 }
                 // Get password
-                System.out.println("Enter a password:");
-                String password = scanner.nextLine();
+                String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+
+                // Prompt the user to enter a password
+                String password;
+                do {
+                    System.out.println("Enter a password (at least 8 characters, including uppercase, lowercase, digit, and special character):");
+                    password = scanner.nextLine();
+
+                    // Check if the entered password matches the regex
+                    if (!password.matches(passwordRegex)) {
+                        System.out.println("Invalid password! Please follow the specified criteria.");
+                    }
+                } while (!password.matches(passwordRegex));
+
                 // Create and add a new user to the usersList
                 Account account;
                 if(userDetails instanceof BankDetails) {
