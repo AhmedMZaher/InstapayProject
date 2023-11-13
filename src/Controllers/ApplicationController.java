@@ -3,6 +3,7 @@ package Controllers;
 import java.util.Scanner;
 
 import API.BankDetails;
+import API.DetailsAPI;
 import API.WalletDetails;
 import MainClasses.BankAccount;
 import MainClasses.InstaPaySystem;
@@ -57,7 +58,7 @@ public class ApplicationController {
           System.out.println("Payment failed");
         }
       }else if (choice == 4) {
-          WalletDetails sender, receiver;
+          DetailsAPI sender, receiver;
           
           System.out.println("Enter receiver phone number: ");
           String receiverPhone = scanner.nextLine();
@@ -65,10 +66,18 @@ public class ApplicationController {
           System.out.println("Enter amount: ");
           double amount = scanner.nextDouble();
 
-          sender = new WalletDetails(user.getAccountType().getMobileNumber());
+          if(user.getAccountType() instanceof BankAccount)
+                sender = new BankDetails(((BankAccount) user.getAccountType()).getCreditCardNumber(), ((BankAccount) user.getAccountType()).getCvv(), ((BankAccount) user.getAccountType()).getMobileNumber());
+          else
+              sender = new WalletDetails(user.getAccountType().getMobileNumber());
           receiver = new WalletDetails(receiverPhone);
 
-          AccountController.getInstance().transferToWalletAccount(sender, receiver, amount);
+          if(AccountController.getInstance().transferToWalletAccount(sender, receiver, amount)){
+              System.out.println("Transfer successful");
+
+          }else
+              System.out.println("Insufficient balance");
+
       }else if (choice == 5) {
           System.out.println("Enter account ID: ");
           String accountID = scanner.nextLine();

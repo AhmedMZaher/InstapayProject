@@ -20,11 +20,20 @@ public class  AccountController {
     }
 
     public boolean transferToWalletAccount(DetailsAPI senderUserDetails, DetailsAPI recieverUserDetails, double amount) {
-        double senderBalance = BankAPI.getInstance().getAccountBalance(senderUserDetails);
-        double recieverBalance = BankAPI.getInstance().getAccountBalance(recieverUserDetails);
+        double senderBalance;
+        if(senderUserDetails instanceof BankDetails)
+            senderBalance = BankAPI.getInstance().getAccountBalance(senderUserDetails);
+        else
+            senderBalance = WalletAPI.getInstance().getAccountBalance(senderUserDetails);
+
+        double recieverBalance = WalletAPI.getInstance().getAccountBalance(recieverUserDetails);
 
         if (senderBalance >= amount) {
-            WalletAPI.getInstance().updateBalance(senderUserDetails, senderBalance - amount);
+            if(senderUserDetails instanceof BankDetails)
+                BankAPI.getInstance().updateBalance(senderUserDetails, senderBalance - amount);
+            else
+                WalletAPI.getInstance().updateBalance(senderUserDetails, senderBalance - amount);
+
             WalletAPI.getInstance().updateBalance(recieverUserDetails, recieverBalance + amount);
 
             return true;
