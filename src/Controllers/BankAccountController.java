@@ -19,6 +19,8 @@ public class BankAccountController {
     return instance;
   }
   public boolean transferToBankAccount(DetailsAPI senderUserDetails, DetailsAPI recieverUserDetails, double amount) {
+    if(!BankAPI.getInstance().authenticateUser(recieverUserDetails))
+      return false;
     double senderBalance = BankAPI.getInstance().getAccountBalance(senderUserDetails);
     double recieverBalance = BankAPI.getInstance().getAccountBalance(recieverUserDetails);
     if(senderBalance >= amount) {

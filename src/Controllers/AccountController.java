@@ -20,6 +20,8 @@ public class  AccountController {
     }
 
     public boolean transferToWalletAccount(DetailsAPI senderUserDetails, DetailsAPI recieverUserDetails, double amount) {
+        if(!WalletAPI.getInstance().authenticateUser(recieverUserDetails))
+            return false;
         double senderBalance;
         if(senderUserDetails instanceof BankDetails)
             senderBalance = BankAPI.getInstance().getAccountBalance(senderUserDetails);
