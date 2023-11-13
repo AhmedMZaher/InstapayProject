@@ -39,7 +39,7 @@ public class ApplicationController {
         System.out.println("6. Transfer to a bank account");
           
       choice = scanner.nextInt();
-
+      scanner.nextLine();
       if(choice == 0) {
         user = null;
         System.out.println("Logged out");
