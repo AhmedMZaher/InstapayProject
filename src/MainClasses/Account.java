@@ -1,9 +1,11 @@
 package MainClasses;
 
+import API.DetailsAPI;
+
 public abstract class Account {
     protected String accountID;
     protected String mobileNumber;
-
+    protected DetailsAPI userDetails;
     public Account(String mobileNumber) {
         this.accountID = String.valueOf((int)(Math.random()*9000) + 1000);
         this.mobileNumber = mobileNumber;
@@ -23,7 +25,5 @@ public abstract class Account {
 
     public abstract double getAccountBalance();
 
-    public abstract String getUserDetails();
-
-    public abstract void UpdateAccountBalance(double amount);
+    public abstract void updateAccountBalance(double amount);
 }

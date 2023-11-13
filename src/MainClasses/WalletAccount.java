@@ -7,9 +7,10 @@ import API.WalletDetails;
 public class WalletAccount extends Account {
     private String provider;
 
-    public WalletAccount(String mobileNumber, String provider) {
+    public WalletAccount(String mobileNumber, String provider, WalletDetails walletDetails) {
         super(mobileNumber);
         this.provider = provider;
+        this.userDetails = walletDetails;
     }
 
     public String getProvider() {
@@ -21,19 +22,13 @@ public class WalletAccount extends Account {
     }
 
     @Override
-    public String getUserDetails() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserDetails'");
-    }
-
-    @Override
     public double getAccountBalance() {
         DetailsAPI userDetails = new WalletDetails(this.getMobileNumber());
         return WalletAPI.getInstance().getAccountBalance(userDetails);
     }
 
     @Override
-    public void UpdateAccountBalance(double amount) {
+    public void updateAccountBalance(double amount) {
         DetailsAPI userDetails = new WalletDetails(this.getMobileNumber());
         WalletAPI.getInstance().updateBalance(userDetails, amount);
     }

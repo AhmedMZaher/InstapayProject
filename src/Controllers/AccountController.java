@@ -50,9 +50,9 @@ public class  AccountController {
         }
 
         if (senderInstapayAccount.getAccountBalance() >= amount) {
-            senderInstapayAccount.UpdateAccountBalance(senderInstapayAccount.getAccountBalance() - amount);
+            senderInstapayAccount.updateAccountBalance(senderInstapayAccount.getAccountBalance() - amount);
             recieverUser.getAccountType()
-                    .UpdateAccountBalance(recieverUser.getAccountType().getAccountBalance() + amount);
+                    .updateAccountBalance(recieverUser.getAccountType().getAccountBalance() + amount);
             return true;
         }
         return false;
@@ -80,14 +80,14 @@ public class  AccountController {
                 if (account instanceof WalletAccount) {
                     WalletAccount walletAccount = (WalletAccount) account;
                     if (walletAccount.getAccountBalance() >= amount) {
-                        walletAccount.UpdateAccountBalance(walletAccount.getAccountBalance() - amount);
+                        walletAccount.updateAccountBalance(walletAccount.getAccountBalance() - amount);
                         return true;
                     }
 
                 } else if (account instanceof BankAccount) {
                     BankAccount bankAccount = (BankAccount) account;
                     if (bankAccount.getAccountBalance() >= amount) {
-                        bankAccount.UpdateAccountBalance(bankAccount.getAccountBalance() - amount);
+                        bankAccount.updateAccountBalance(bankAccount.getAccountBalance() - amount);
                         return true;
                     }
                 }
@@ -104,14 +104,14 @@ public class  AccountController {
                 if (account instanceof WalletAccount) {
                     WalletAccount walletAccount = (WalletAccount) account;
                     if (walletAccount.getAccountBalance() >= amount) {
-                        walletAccount.UpdateAccountBalance(walletAccount.getAccountBalance() - amount);
+                        walletAccount.updateAccountBalance(walletAccount.getAccountBalance() - amount);
                         return true;
                     }
 
                 } else if (account instanceof BankAccount) {
                     BankAccount bankAccount = (BankAccount) account;
                     if (bankAccount.getAccountBalance() >= amount) {
-                        bankAccount.UpdateAccountBalance(bankAccount.getAccountBalance() - amount);
+                        bankAccount.updateAccountBalance(bankAccount.getAccountBalance() - amount);
                         return true;
                     }
                 }
