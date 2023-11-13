@@ -2,6 +2,8 @@ package Controllers;
 
 import API.BankAPI;
 import API.DetailsAPI;
+import MainClasses.InstaPaySystem;
+import MainClasses.User;
 
 public class BankAccountController {
   private static BankAccountController instance;
@@ -25,5 +27,15 @@ public class BankAccountController {
       return true;
     }
     return false;
+  }
+
+  public boolean transferToInstaPayAccount(DetailsAPI senderUserDetails, String accountID, double amount){
+    User recieverUser = InstaPaySystem.getInstance().isUserExist(accountID);
+
+    if (recieverUser == null || senderUserDetails == null) {
+      return false;
+    }
+
+    return transferToBankAccount(senderUserDetails, recieverUser.getAccountType().getUserDetails(), amount);
   }
 }

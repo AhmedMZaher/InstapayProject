@@ -6,9 +6,9 @@ public class BankAPI implements API {
     private static BankAPI instance;
     private BankAPI() {
         bankUsers = new HashMap<>();
-        bankUsers.put(new BankDetails("1234567890123456", "123", "1234567890"), 1000.0);
-        bankUsers.put(new BankDetails("1234567890123457", "123", "1234567890"), 1000.0);
-        bankUsers.put(new BankDetails("1234567890123458", "123", "1234567890"), 1000.0);
+        bankUsers.put(new BankDetails("1234567890123456", "123", "1234567890", "Alexandria"), 1000.0);
+        bankUsers.put(new BankDetails("1234567890123457", "123", "1234567890", "AlAhli"), 1000.0);
+        bankUsers.put(new BankDetails("1234567890123458", "123", "1234567890", "Misr"), 1000.0);
     }
     public static BankAPI getInstance() {
         if (instance == null) {

@@ -58,7 +58,7 @@ public class ApplicationController {
           System.out.println("Payment failed");
         }
       }else if (choice == 4) {
-          DetailsAPI sender, receiver;
+          DetailsAPI receiver;
           
           System.out.println("Enter receiver phone number: ");
           String receiverPhone = scanner.nextLine();
@@ -66,13 +66,9 @@ public class ApplicationController {
           System.out.println("Enter amount: ");
           double amount = scanner.nextDouble();
 
-          if(user.getAccountType() instanceof BankAccount)
-                sender = new BankDetails(((BankAccount) user.getAccountType()).getCreditCardNumber(), ((BankAccount) user.getAccountType()).getCvv(), ((BankAccount) user.getAccountType()).getMobileNumber());
-          else
-              sender = new WalletDetails(user.getAccountType().getMobileNumber());
           receiver = new WalletDetails(receiverPhone);
 
-          if(AccountController.getInstance().transferToWalletAccount(sender, receiver, amount)){
+          if(AccountController.getInstance().transferToWalletAccount(user.getAccountType().getUserDetails(), receiver, amount)){
               System.out.println("Transfer successful");
 
           }else
@@ -84,16 +80,20 @@ public class ApplicationController {
 
           System.out.println("Enter amount: ");
           double amount = scanner.nextDouble();
-          
-          boolean result = AccountController.getInstance().transferToInstaPayAccount(user.getAccountType(), accountID,
-              amount);
+
+          boolean result;
+          if(user.getAccountType() instanceof BankAccount)
+              result = BankAccountController.getInstance().transferToInstaPayAccount(user.getAccountType().getUserDetails(), accountID, amount);
+          else
+              result = AccountController.getInstance().transferToInstaPayAccount(user.getAccountType().getUserDetails(), accountID, amount);
+
           if(!result) {
             System.out.println("Insufficient balance");
           } else {
             System.out.println("Transfer successful");
           }
       }else if (choice == 6 && user.getAccountType() instanceof BankAccount) {
-          BankDetails sender, receiver;
+
 
           System.out.println("Enter receiver credit card number: ");
           String receiverCreditCard = scanner.nextLine();
@@ -104,16 +104,16 @@ public class ApplicationController {
           System.out.println("Enter receiver phone number: ");
           String receiverPhone = scanner.nextLine();
 
+          System.out.println("Enter receiver bank name: ");
+          String bankName = scanner.nextLine();
+
           System.out.println("Enter amount: ");
           double amount = scanner.nextDouble();
 
-          String senderCreditCard = ((BankAccount) user.getAccountType()).getCreditCardNumber();
-          String senderCvv = ((BankAccount) user.getAccountType()).getCvv();
 
-          sender = new BankDetails(senderCreditCard, senderCvv, user.getAccountType().getMobileNumber());
-          receiver = new BankDetails(receiverCreditCard, receiverCvv, receiverPhone);
+          BankDetails receiverDetails = new BankDetails(receiverCreditCard, receiverCvv, receiverPhone, bankName);
 
-          BankAccountController.getInstance().transferToBankAccount(sender, receiver, amount);
+          BankAccountController.getInstance().transferToBankAccount(user.getAccountType().getUserDetails(), receiverDetails, amount);
       }else {
           System.out.println("Invalid input! process is aborted");
           return;

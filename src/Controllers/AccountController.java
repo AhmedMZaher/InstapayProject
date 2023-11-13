@@ -42,20 +42,14 @@ public class  AccountController {
         return false;
     }
 
-    public boolean transferToInstaPayAccount(Account senderInstapayAccount, String accountID, double amount) {
+    public boolean transferToInstaPayAccount(DetailsAPI senderUserDetails, String accountID, double amount) {
         User recieverUser = InstaPaySystem.getInstance().isUserExist(accountID);
         
-        if (recieverUser == null || senderInstapayAccount == null) {
+        if (recieverUser == null || senderUserDetails == null) {
             return false;
         }
 
-        if (senderInstapayAccount.getAccountBalance() >= amount) {
-            senderInstapayAccount.updateAccountBalance(senderInstapayAccount.getAccountBalance() - amount);
-            recieverUser.getAccountType()
-                    .updateAccountBalance(recieverUser.getAccountType().getAccountBalance() + amount);
-            return true;
-        }
-        return false;
+        return transferToWalletAccount(senderUserDetails, recieverUser.getAccountType().getUserDetails(), amount);
     }
 
     public boolean payBill(User user) {

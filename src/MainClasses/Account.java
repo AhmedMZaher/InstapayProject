@@ -26,4 +26,12 @@ public abstract class Account {
     public abstract double getAccountBalance();
 
     public abstract void updateAccountBalance(double amount);
+
+    public DetailsAPI getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(DetailsAPI userDetails) {
+        this.userDetails = userDetails;
+    }
 }
