@@ -5,7 +5,7 @@ public abstract class Account {
     protected String mobileNumber;
 
     public Account(String mobileNumber) {
-        this.accountID = Math.random() + "";
+        this.accountID = String.valueOf((int)(Math.random()*9000) + 1000);
         this.mobileNumber = mobileNumber;
     }
     

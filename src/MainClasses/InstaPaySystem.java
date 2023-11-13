@@ -17,8 +17,12 @@ public class InstaPaySystem {
     private List<User> usersList;
     private API api;
 
-    private InstaPaySystem(){
-        usersList = new ArrayList<User>() ;
+    private InstaPaySystem() {
+        usersList = new ArrayList<User>();
+    }
+    
+    public List<User> getUsersList() {
+        return usersList;
     }
 
     public static InstaPaySystem  getInstance(){
@@ -111,10 +115,21 @@ public class InstaPaySystem {
         return usersList.stream().anyMatch(user -> user.getUsername().equals(username));
     }
 
+    public User isUserExist(String accountID) {
+        for (User user : usersList) {
+            if (user.getAccountType().getAccountID().equals(accountID)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     private String generateOTP() {
         // Placeholder for OTP generation logic
         // For demonstration purposes, a simple implementation is used
         return "123456";
     }
+
+    
 
 }
