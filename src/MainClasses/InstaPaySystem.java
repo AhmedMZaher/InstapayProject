@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 import  API.BankAPI;
 import  API.WalletAPI;
+import Account.Account;
+import Account.BankAccount;
+import Account.WalletAccount;
 
 public class InstaPaySystem {
 

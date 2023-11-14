@@ -5,7 +5,7 @@ import java.util.Scanner;
 import API.BankDetails;
 import API.DetailsAPI;
 import API.WalletDetails;
-import MainClasses.BankAccount;
+import Account.BankAccount;
 import MainClasses.InstaPaySystem;
 import MainClasses.User;
 

@@ -1,4 +1,4 @@
-package MainClasses;
+package Account;
 
 import API.DetailsAPI;
 
@@ -10,7 +10,7 @@ public abstract class Account {
         this.accountID = String.valueOf((int)(Math.random()*9000) + 1000);
         this.mobileNumber = mobileNumber;
     }
-    
+
     public String getAccountID() {
         return accountID;
     }

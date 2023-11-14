@@ -1,5 +1,7 @@
 package MainClasses;
 
+import Account.Account;
+
 public class User {
     // Fields
     private String fullName;

@@ -1,4 +1,4 @@
-package MainClasses;
+package Account;
 
 import API.DetailsAPI;
 import API.WalletAPI;

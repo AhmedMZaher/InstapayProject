@@ -1,4 +1,4 @@
-package MainClasses;
+package Bill;
 
 import API.DetailsAPI;
 

@@ -1,4 +1,4 @@
-package MainClasses;
+package Account;
 
 import API.BankAPI;
 import API.BankDetails;
