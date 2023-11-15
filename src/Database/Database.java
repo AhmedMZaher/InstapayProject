@@ -1,4 +1,4 @@
-package MainClasses;
+package Database;
 
 public interface Database {
     public void read();

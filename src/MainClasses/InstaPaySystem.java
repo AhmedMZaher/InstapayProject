@@ -13,6 +13,7 @@ import  API.WalletAPI;
 import Account.Account;
 import Account.BankAccount;
 import Account.WalletAccount;
+import Database.UserDatabase;
 
 public class InstaPaySystem {
 
@@ -20,10 +21,11 @@ public class InstaPaySystem {
     private List<User> usersList;
     private API api;
 
+
     private InstaPaySystem() {
-        usersList = new ArrayList<User>();
+        usersList = UserDatabase.getInstance().getUsersList();
     }
-    
+
     public List<User> getUsersList() {
         return usersList;
     }
@@ -99,13 +101,13 @@ public class InstaPaySystem {
 
                 // Create and add a new user to the usersList
                 Account account;
-                if(userDetails instanceof BankDetails) {
+                if (userDetails instanceof BankDetails) {
                     account = new BankAccount(phoneNumber, (BankDetails) userDetails);
                 } else {
                     account = new WalletAccount(phoneNumber, (WalletDetails) userDetails);
                 }
                 User newUser = new User(fullName, username, password, account);
-                usersList.add(newUser);
+                UserDatabase.getInstance().addUser(newUser);
                 System.out.println("Sign-up is successful!");
             } else {
                 System.out.println("OTP verification failed. Sign-up aborted.");
